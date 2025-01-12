@@ -19,40 +19,48 @@ Unity 프로젝트에서 JSON 및 XML 데이터를 손쉽게 가져오고 내보
 # 함수
 
 ### JSON
+```C#
+//객체를 JSON 파일로 내보내기
+ExportJson<T>(T data, string directory, string fileName)
+ExportJson<T>(T data, string directory)
+```
 
-`ExportJson` - 객체를 JSON 파일로 내보내기
+```C#
+//JSON 파일에서 객체 불러오기
+ImportJson<T>(string directory, string fileName)
+ImportJson<T>(string directory)
+```
 
-`ImportJson` - JSON 파일에서 객체 불러오기
+fileName이 없으면 타입의 이름을 사용합니다.
 
 ### XML
+```C#
+//객체 스키마를 XML로 내보내기
+ExportXmlSchema<T>(string directory, string fileName)
+ExportXmlSchema<T>(string directory)
+```
 
-`ExportXmlSchema` - 객체 스키마를 XML로 내보내기
-
-`ImportXml` - XML 파일에서 객체 배열 불러오기
-
-### 기본 제공 경로
-
-`PersistentDataPath` - 데이터 저장에 사용
-
-`ResourcePath` - 외부에서 접근할 수 없는 데이터에 사용
-
-`StreamingAssetsPath` - 외부에서 접근할 수 있는 데이터에 사용
+```C#
+//XML 파일에서 객체 배열 불러오기
+ImportXml<T>(string directory, string fileName)
+ImportXml<T>(string directory)
+```
 
 # 사용법
 ### JSON
 ``` C#
 //JSON 내보내기
-FileManager.ExportJson(FileManager.PersistentDataPath, data);
+FileManager.ExportJson(data, path);
 
 //JSON 불러오기
-var data = FileManager.ImportJson<MyClass>(FileManager.PersistentDataPath);
+var data = FileManager.ImportJson<MyClass>(path);
 ```
 
 ### XML
 ``` C#
 ///XML 스키마 내보내기
-FileManager.ExportXmlSchema<MyClass>(FileManager.StreamingAssetsPath);
+FileManager.ExportXmlSchema<MyClass>(path);
 
 ///XML 불러오기
-var data = FileManager.ImportXml<MyClass>(FileManager.StreamingAssetsPath);
+var data = FileManager.ImportXml<MyClass>(path);
 ```
